@@ -14,8 +14,7 @@ class AuthService{
 
   static Future<SignInSignUpResult> signInWithEmail({required String email, required String pass}) async {
     try {
-      UserCredential result = await
-_auth.signInWithEmailAndPassword(email: email, password: pass);
+      UserCredential result = await _auth.signInWithEmailAndPassword(email: email, password: pass);
       return SignInSignUpResult(user: result.user);
     } catch (e) {
       return SignInSignUpResult(message: e.toString());

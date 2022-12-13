@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_auth/auth_service.dart';
+import 'package:flutter_firebase_auth/pages/profile_page.dart';
+import 'package:flutter_firebase_auth/widgets/bottom_navbar.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 
 class LoginPage extends StatelessWidget {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passController = TextEditingController();
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +54,8 @@ class LoginPage extends StatelessWidget {
                   SizedBox(height: 40),
                   // Form username & password
                   Form(
+                    autovalidateMode: AutovalidateMode.always,
+                    key: formkey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
@@ -59,6 +65,10 @@ class LoginPage extends StatelessWidget {
                         ),
                         SizedBox(height: 8),
                         TextFormField(
+                          validator: MultiValidator([
+                            RequiredValidator(errorText: "* Required"),
+                            EmailValidator(errorText: "Enter valid email id"),
+                          ]),
                           style: TextStyle(color: Colors.black),
                           controller: _emailController,
                           keyboardType: TextInputType.emailAddress,
@@ -88,6 +98,14 @@ class LoginPage extends StatelessWidget {
                         ),
                         SizedBox(height: 8),
                         TextFormField(
+                          validator: MultiValidator([
+                            RequiredValidator(errorText: "* Required"),
+                            MinLengthValidator(6,
+                                errorText: "Password should be atleast 6 characters"),
+                            MaxLengthValidator(15,
+                                errorText:
+                                "Password should not be greater than 15 characters")
+                          ]),
                           style: TextStyle(color: Colors.black),
                           keyboardType: TextInputType.visiblePassword,
                           controller: _passController,
@@ -116,10 +134,10 @@ class LoginPage extends StatelessWidget {
                           width: double.infinity,
                           child: ElevatedButton(
                             onPressed: () async {
-                              SignInSignUpResult result = await AuthService.createUser(email: _emailController.text, pass: _passController.text);
+                              SignInSignUpResult result = await AuthService.signInWithEmail(email: _emailController.text, pass: _passController.text);
                               if (result.user !=null) {
                                 Navigator.push(context, MaterialPageRoute(builder: (context){
-                                  return LoginPage();
+                                  return Bottom();
                                 }));
                               } else {
                                 showDialog(context: context, 
