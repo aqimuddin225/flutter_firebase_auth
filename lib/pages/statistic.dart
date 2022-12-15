@@ -1,6 +1,6 @@
 
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_auth/widgets/chart.dart';
 
@@ -24,8 +24,8 @@ class _StatisticsState extends State<Statistics> {
             SliverToBoxAdapter(
               child: Column(
                 children: [
-                  SizedBox(height: 20),
-                  Text(
+                  const SizedBox(height: 20),
+                  const Text(
                     'Statistics',
                     style: TextStyle(
                       color: Colors.black,
@@ -33,7 +33,7 @@ class _StatisticsState extends State<Statistics> {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15),
                     child: Row(
@@ -52,7 +52,7 @@ class _StatisticsState extends State<Statistics> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 color: index_color == index
-                                  ? Color.fromARGB(255, 47, 125, 121)
+                                  ? const Color.fromARGB(255, 47, 125, 121)
                                   : Colors.white,
                               ),
                               alignment: Alignment.center,
@@ -72,7 +72,7 @@ class _StatisticsState extends State<Statistics> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15),
                     child: Row(
@@ -81,9 +81,10 @@ class _StatisticsState extends State<Statistics> {
                         Container(
                           width: 120,
                           height: 40,
+                          // ignore: sort_child_properties_last
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
+                            children: const [
                               Text(
                                 'Expense',
                                 style: TextStyle(
@@ -109,13 +110,13 @@ class _StatisticsState extends State<Statistics> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 20,),
-                  Chart(),
-                  SizedBox(height: 20,),
+                  const SizedBox(height: 20,),
+                  const Chart(),
+                  const SizedBox(height: 20,),
                   Padding(
                     padding: const EdgeInsets.only(left: 15),
                     child: Row(
-                      children: [
+                      children: const [
                         Text(
                           'Top Spending',
                           style: TextStyle(
@@ -140,22 +141,22 @@ class _StatisticsState extends State<Statistics> {
                 return ListTile(
                     leading: ClipRRect(
                       borderRadius: BorderRadius.circular(5),
-                      child: Icon(Icons.money, size: 40,),
+                      child: const Icon(Icons.money, size: 40,),
                     ),
-                    title: Text(
+                    title: const Text(
                       'transfer',
                       style: TextStyle(
                         fontSize: 17,
                         fontWeight: FontWeight.w600
                       ),
                     ),
-                    subtitle: Text(
+                    subtitle: const Text(
                       'today',
                       style: TextStyle(
                         fontWeight: FontWeight.w600
                       ),
                     ),
-                    trailing: Text(
+                    trailing: const Text(
                       '\$ 56',
                       style: TextStyle(
                         fontWeight: FontWeight.w600,

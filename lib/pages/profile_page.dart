@@ -1,7 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_firebase_auth/auth_service.dart';
 import 'package:flutter_firebase_auth/pages/login_page.dart';
 
@@ -25,8 +23,9 @@ class _ProfilePageState extends State<ProfilePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
+                    // ignore: prefer_const_literals_to_create_immutables
                     children: [
-                      Text(
+                      const Text(
                         '‘Hello.’',
                         style: TextStyle(
                           color: Colors.white,
@@ -35,17 +34,17 @@ class _ProfilePageState extends State<ProfilePage> {
                           letterSpacing: 1.5,
                         ),
                       ),
-                      SizedBox(width: 16),
-                      Expanded(
+                      const SizedBox(width: 16),
+                      const Expanded(
                         child: Divider(
                           thickness: 3,
                           color: Colors.white,
                         ),
                       ),
-                      SizedBox(width: 40),
+                      const SizedBox(width: 40),
                     ],
                   ),
-                  Text(
+                  const Text(
                     'Profile',
                     style: TextStyle(
                         color: Colors.white,
@@ -53,65 +52,65 @@ class _ProfilePageState extends State<ProfilePage> {
                         fontSize: 36,
                         letterSpacing: 5),
                   ),
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
                   Form(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('UID'),
-                        SizedBox(height: 8),
+                        const Text('UID'),
+                        const SizedBox(height: 8),
                         TextFormField(
-                          style: TextStyle(color: Colors.black),
+                          style: const TextStyle(color: Colors.black),
                           decoration: InputDecoration(
                             hintText: FirebaseAuth.instance.currentUser?.uid,
-                            hintStyle: TextStyle(
+                            hintStyle: const TextStyle(
                               color: Colors.black
                             ),
                             fillColor: Colors.white,
                             filled: true,
                             focusedBorder:  OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.white,
                               ),
                             ),
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.white,
                               ),
                             ),
-                            contentPadding: EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                            contentPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
                           ),
                         ),
-                        SizedBox(height: 16),
-                        Text('Email'),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 16),
+                        const Text('Email'),
+                        const SizedBox(height: 8),
                         TextFormField(
-                          style: TextStyle(color: Colors.black),
+                          style: const TextStyle(color: Colors.black),
                           decoration: InputDecoration(
                             hintText: FirebaseAuth.instance.currentUser?.email,
-                            hintStyle: TextStyle(
+                            hintStyle: const TextStyle(
                               color: Colors.black
                             ),
                             fillColor: Colors.white,
                             filled: true,
                             focusedBorder:  OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.white,
                               ),
                             ),
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.white,
                               ),
                             ),
-                            contentPadding: EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                            contentPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
                           ),
                         ),
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                       ],
                     ),
                   ),
@@ -126,7 +125,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   return LoginPage();
                                 }));
                               }, 
-                  child: Text(
+                  child: const Text(
                     'Log out',
                     style: TextStyle(color: Colors.white),
                   )

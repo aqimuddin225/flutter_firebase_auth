@@ -1,6 +1,9 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_auth/api_service.dart';
+import 'package:flutter_firebase_auth/models/transaction.dart';
 import 'package:flutter_firebase_auth/pages/home.dart';
+import 'package:flutter_firebase_auth/pages/home_page.dart';
 import 'package:flutter_firebase_auth/pages/profile_page.dart';
 import 'package:flutter_firebase_auth/pages/statistic.dart';
 
@@ -12,8 +15,23 @@ class Bottom extends StatefulWidget {
 }
 
 class _BottomState extends State<Bottom> {
+  List<Money> listMoney = [];
+  Repository repo = Repository();
+
+  getData() async{
+    listMoney = await repo.getData();
+  }
+  
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
+
+  // ignore: non_constant_identifier_names
   int index_color = 0;
-  List Screen = [Home(), Statistics(), Home(), ProfilePage()];
+  // ignore: non_constant_identifier_names
+  List Screen = [const HomePage(), const Statistics(), const Home(), const ProfilePage()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,12 +40,12 @@ class _BottomState extends State<Bottom> {
         onPressed: () {
           
         },
-        child: Icon(Icons.add),
-        backgroundColor: Color(0xff368983),
+        backgroundColor: const Color(0xff368983),
+        child: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
-        shape: CircularNotchedRectangle(),
+        shape: const CircularNotchedRectangle(),
         child: Padding(
           padding: const EdgeInsets.only(top: 7.5, bottom: 7.5),
           child: Row(
@@ -42,7 +60,7 @@ class _BottomState extends State<Bottom> {
                 child: Icon(
                   Icons.home,
                   size: 30,
-                  color: index_color == 0 ? Color(0xff368983) : Colors.grey,
+                  color: index_color == 0 ? const Color(0xff368983) : Colors.grey,
                 ),
               ),
               GestureDetector(
@@ -54,10 +72,10 @@ class _BottomState extends State<Bottom> {
                 child: Icon(
                   Icons.bar_chart_outlined,
                   size: 30,
-                  color: index_color == 1 ? Color(0xff368983) : Colors.grey,
+                  color: index_color == 1 ? const Color(0xff368983) : Colors.grey,
                 ),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               GestureDetector(
                 onTap: () {
                   setState(() {
@@ -67,7 +85,7 @@ class _BottomState extends State<Bottom> {
                 child: Icon(
                   Icons.account_balance_wallet_outlined,
                   size: 30,
-                  color: index_color == 2 ? Color(0xff368983) : Colors.grey,
+                  color: index_color == 2 ? const Color(0xff368983) : Colors.grey,
                 ),
               ),
               GestureDetector(
@@ -79,7 +97,7 @@ class _BottomState extends State<Bottom> {
                 child: Icon(
                   Icons.person_outlined,
                   size: 30,
-                  color: index_color == 3 ? Color(0xff368983) : Colors.grey,
+                  color: index_color == 3 ? const Color(0xff368983) : Colors.grey,
                 ),
               ),
             ],

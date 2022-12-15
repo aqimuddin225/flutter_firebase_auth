@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_auth/auth_service.dart';
-import 'package:flutter_firebase_auth/pages/profile_page.dart';
 import 'package:flutter_firebase_auth/widgets/bottom_navbar.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
+// ignore: must_be_immutable
 class LoginPage extends StatelessWidget {
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passController = TextEditingController();
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
+
+  LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +41,7 @@ class LoginPage extends StatelessWidget {
                           color: Colors.white,
                         ),
                       ),
-                      SizedBox(width: 40),
+                      const SizedBox(width: 40),
                     ],
                   ),
                   // Tulisan Welcome back
@@ -51,7 +53,7 @@ class LoginPage extends StatelessWidget {
                         fontSize: 36,
                         letterSpacing: 5),
                   ),
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
                   // Form username & password
                   Form(
                     autovalidateMode: AutovalidateMode.always,
@@ -59,17 +61,17 @@ class LoginPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(
+                        const Text(
                           '‘Email’',
                           style: TextStyle(color: Colors.white),
                         ),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         TextFormField(
                           validator: MultiValidator([
                             RequiredValidator(errorText: "* Required"),
                             EmailValidator(errorText: "Enter valid email id"),
                           ]),
-                          style: TextStyle(color: Colors.black),
+                          style: const TextStyle(color: Colors.black),
                           controller: _emailController,
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
@@ -78,25 +80,25 @@ class LoginPage extends StatelessWidget {
                             filled: true,
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.white,
                               ),
                             ),
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.white,
                               ),
                             ),
-                            contentPadding: EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                            contentPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
                           ),
                         ),
-                        SizedBox(height: 16),
-                        Text(
+                        const SizedBox(height: 16),
+                        const Text(
                           '‘Password’',
                           style: TextStyle(color: Colors.white),
                         ),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         TextFormField(
                           validator: MultiValidator([
                             RequiredValidator(errorText: "* Required"),
@@ -106,7 +108,7 @@ class LoginPage extends StatelessWidget {
                                 errorText:
                                 "Password should not be greater than 15 characters")
                           ]),
-                          style: TextStyle(color: Colors.black),
+                          style: const TextStyle(color: Colors.black),
                           keyboardType: TextInputType.visiblePassword,
                           controller: _passController,
                           obscureText: true,
@@ -116,47 +118,48 @@ class LoginPage extends StatelessWidget {
                             filled: true,
                             focusedBorder: OutlineInputBorder(
                               borderRadius:BorderRadius.circular(8),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.white,
                               ),
                             ),
                             enabledBorder: OutlineInputBorder(
                               borderRadius:BorderRadius.circular(8),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.white,
                               ),
                             ),
-                            contentPadding: EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                            contentPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
                           ),
                         ),
-                        SizedBox(height: 20),
-                        Container(
+                        const SizedBox(height: 20),
+                        SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
                             onPressed: () async {
                               SignInSignUpResult result = await AuthService.signInWithEmail(email: _emailController.text, pass: _passController.text);
                               if (result.user !=null) {
+                                // ignore: use_build_context_synchronously
                                 Navigator.push(context, MaterialPageRoute(builder: (context){
-                                  return Bottom();
+                                  return const Bottom();
                                 }));
                               } else {
                                 showDialog(context: context, 
                                   builder: (context)=> AlertDialog(
-                                    title: Text('‘Error’'),
+                                    title: const Text('‘Error’'),
                                     content: Text(result.message.toString()),
                                     actions: <Widget>[
                                       TextButton(
                                         onPressed: () {
                                           Navigator.pop(context);
                                         },
-                                        child: Text('‘OK’'),
+                                        child: const Text('‘OK’'),
                                       )
                                     ],
                                   )
                                 );
                               }
                             },
-                            child: Text(
+                            child: const Text(
                                   '‘Login’',
                                   style: TextStyle(color: Colors.white),
                                 ),
@@ -165,9 +168,9 @@ class LoginPage extends StatelessWidget {
                         ],
                       ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Row(
-                    children: <Widget>[
+                    children: const <Widget>[
                       Expanded(
                         child: Divider(
                           thickness: 1,
@@ -188,43 +191,43 @@ class LoginPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
-                  Container(
+                  const SizedBox(height: 20),
+                  SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {},
-                      child: Text(
+                      child: const Text(
                         '‘Login with Google’',
                         ),
                       ),
                   ),
-                  SizedBox(height: 8),
-                  Container(
+                  const SizedBox(height: 8),
+                  SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {},
-                      child: Text(
+                      child: const Text(
                         '‘Login with Facebook’',
                         ),
                       ),
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                 ]),
               ),
               SliverFillRemaining(
                 hasScrollBody: false,
                 child: Container(
                   alignment: Alignment.bottomCenter,
-                  margin: EdgeInsets.only(bottom: 20),
+                  margin: const EdgeInsets.only(bottom: 20),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      Text(
-                        '‘Don\’t have account ?’',
+                      const Text(
+                        '‘Don’t have account ?’',
                         style: TextStyle(color: Colors.white),
                       ),
                       GestureDetector(
-                        child: Text(
+                        child: const Text(
                           '‘Register here’',
                           style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
                         ),

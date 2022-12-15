@@ -1,7 +1,29 @@
+import 'package:flutter/src/widgets/container.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_auth/api_service.dart';
+import 'package:flutter_firebase_auth/models/transaction.dart';
 
-class Home extends StatelessWidget {
-  const Home({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  List<Money> listMoney = [];
+  Repository repo = Repository();
+
+  getData() async{
+    listMoney = await repo.getData();
+  }
+  
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,31 +61,32 @@ class Home extends StatelessWidget {
                       ),
                     ),
               SliverList(delegate: SliverChildBuilderDelegate(
+                childCount: listMoney.length,
                 (context, index) {
                   return ListTile(
                     leading: ClipRRect(
                       borderRadius: BorderRadius.circular(5),
                       child: const Icon(Icons.money, size: 40,),
                     ),
-                    title: const Text(
-                      'transfer',
+                    title: Text(
+                      listMoney[index].title,
                       style: TextStyle(
                         fontSize: 17,
                         fontWeight: FontWeight.w600
                       ),
                     ),
-                    subtitle: const Text(
+                    subtitle: Text(
                       'today',
                       style: TextStyle(
                         fontWeight: FontWeight.w600
                       ),
                     ),
-                    trailing: const Text(
-                      '\$ 56',
+                    trailing: Text(
+                      listMoney[index].amount.toString(),
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 19,
-                        color: Colors.green,
+                        color: !listMoney[index].isBuy? Colors.green : Colors.red,
                       ),
                     ),
                   );
